@@ -11,8 +11,9 @@ function Counter({ initialCount }) {
   return (
     <>
       <h1>
-        Count: <h3 data-testid='count'>{count}</h3>
+        Count:
       </h1>
+      <h3 data-testid='count'>{count}</h3>
       
 
       <button onClick={increment}>Increment</button>
