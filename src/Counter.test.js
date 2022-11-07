@@ -25,4 +25,31 @@ describe(Counter, () => {
     //expect count to be 1
     expect(countValue).toEqual(1);
   });
+  it("decrements count by 1 when decrement button is pressed", () => {
+    const { getByTestId, getByRole } = render(<Counter initialCount={0} />);
+    //get by role button with text inside it equal to "Decrement"
+    const decrementButton = getByRole("button", { name: "Decrement" });
+    fireEvent.click(decrementButton);
+    //get the countValue, after the fireEvent
+    const countValue = Number(getByTestId("count").textContent);
+    //expect count to be -1
+    expect(countValue).toEqual(-1);
+  })
+  
+  it('sets count to 0 when restart button is pressed', () => {
+    const { getByTestId, getByRole } = render(<Counter initialCount={5} />);
+    const restartButton = getByRole('button', {name: 'Restart'});
+    fireEvent.click(restartButton)
+    const countValue = Number(getByTestId("count").textContent);
+    expect(countValue).toEqual(0)
+  })
+
+  it('sets count to (count * -1) when switch signs button is pressed', () => {
+    const { getByTestId, getByRole } = render(<Counter initialCount={1} />);
+    const switchSignsButton = getByRole('button', {name: 'Switch Signs'});
+    fireEvent.click(switchSignsButton)
+    const countValue = Number(getByTestId("count").textContent);
+    expect(countValue).toEqual(-1)
+  })
+
 });
